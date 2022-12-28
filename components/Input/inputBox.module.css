@@ -1,0 +1,160 @@
+.root {
+  display: flex;
+  font-size: 0.875rem;
+  align-items: center;
+  max-width: 100%;
+}
+
+.root label {
+  width: auto;
+}
+
+.floating_label {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.error_floating_input {
+  position: relative;
+  margin-bottom: 10px;
+  width: 100%;
+}
+.error_floating_input {
+  font-size: 14px;
+  padding: 12px;
+  display: inline-flex;
+  border: 1px solid red;
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+}
+.floating_input,
+.floating-select {
+  font-size: 14px;
+  padding: 12px;
+  display: inline-flex;
+  border: 1px solid var(--accents-2);
+  border-radius: 5px;
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  /*border: none;*/
+  /*border: 1px solid var(--accents-2);*/
+}
+
+.floating_input:focus,
+.floating-select:focus {
+  outline: 0;
+  border: 1px solid var(--accents-2);
+}
+.error_floating_input:focus,
+.floating-select:focus {
+  outline: 0;
+  border: 1px solid red;
+}
+
+.label {
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 15px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.floating_input:focus ~ label,
+.floating_input:not(:placeholder-shown) ~ label {
+  top: -9px;
+  font-size: 14px;
+  color: var(--foreground);
+  background: var(--accents-1);
+  width: auto;
+  padding: 0px 4px;
+}
+.error_floating_input:focus ~ label,
+.error_floating_input:not(:placeholder-shown) ~ label {
+  top: -9px;
+  font-size: 14px;
+  color: var(--error);
+  background: white;
+  width: auto;
+  padding: 0px 4px;
+  /*background:#000000*/
+}
+
+.floating-select:focus ~ label,
+.floating-select:not([value='']):valid ~ label {
+  top: -18px;
+  font-size: 14px;
+  color: #5264ae;
+}
+.error {
+  color: var(--error);
+  /*padding: 0 8px;*/
+}
+/* active state */
+.floating_input:focus ~ .bar:before,
+.floating_input:focus ~ .bar:after,
+.floating-select:focus ~ .bar:before,
+.floating-select:focus ~ .bar:after {
+  width: 50%;
+}
+
+/**, *:before, *:after {*/
+/*  -webkit-box-sizing: border-box;*/
+/*  -moz-box-sizing: border-box;*/
+/*  box-sizing: border-box;*/
+/*}*/
+
+.floating_textarea {
+  /*min-height: 30px;*/
+  /*max-height: 260px;*/
+  overflow: hidden;
+  overflow-x: hidden;
+  background-color: transparent;
+  /*border-radius: 0px;*/
+  /*border: none;*/
+  box-shadow: none;
+  box-sizing: border-box;
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.7;
+  height: 100%;
+  min-height: 100px;
+  outline: 0px;
+  padding: 7px 10px;
+  resize: none;
+  width: 100%;
+  color: var(--geist-foreground);
+  border-radius: 5px;
+  border: 1px solid var(--accents-2);
+}
+
+/* highlighter */
+.highlight {
+  position: absolute;
+  height: 50%;
+  width: 100%;
+  top: 15%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+.floating_input:focus ~ .highlight,
+.floating-select:focus ~ .highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+.large {
+  height: 50px;
+  font-size: 1rem;
+}
