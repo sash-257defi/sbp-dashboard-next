@@ -15,6 +15,7 @@ const SignUp = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isUserError, setIsUserError] = useState(false);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
@@ -84,6 +85,21 @@ const SignUp = () => {
       setPassword('');
     }
   };
+  const userNameHandler = (e) => {
+    const value = e.target.value;
+    if (value) {
+      if (value?.length >= 4) {
+        setIsUserError(false);
+        setUsername(value);
+      } else {
+        setIsUserError(true);
+        setUsername(value);
+      }
+    } else {
+      setIsUserError(false);
+      setUsername('');
+    }
+  };
   return (
     <Wrapper className={styles.root}>
       <div className={styles.main}>
@@ -128,7 +144,10 @@ const SignUp = () => {
               required
               label={'Username'}
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              // onChange={(e) => setUsername(e.target.value)}
+              onChange={userNameHandler}
+              error={isUserError}
+              errorMessage={'UserName must be at least 4 characters'}
             />
             <Spacer size={0.5} axis="vertical" />
             <InputBox
