@@ -28,7 +28,11 @@ const InputBox = function Input({
           value={value}
         />
         <label className={styles.label}>{label}</label>
-        {error && <div className={styles.error}>{errorMessage}</div>}
+        {error ? (
+          <div className={styles.error}>{errorMessage}</div>
+        ) : (
+          <div className={styles.empty} />
+        )}
       </div>
     </div>
   );

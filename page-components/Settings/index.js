@@ -9,13 +9,21 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Settings.module.css';
-
 const EmailVerify = ({ user }) => {
   const [status, setStatus] = useState();
   const verify = useCallback(async () => {
     try {
       setStatus('loading');
-      await fetcher('/api/user/email/verify', { method: 'POST' });
+      await fetcher('/api/user/email/verify', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(user),
+      }).then((res) => {
+        console.log('Response received', res);
+      })
       toast.success(
         'An email has been sent to your mailbox. Follow the instruction to verify your email.'
       );
@@ -31,7 +39,8 @@ const EmailVerify = ({ user }) => {
       <Container flex={1}>
         <p>
           <strong>Note:</strong> <span>Your email</span> (
-          <span className={styles.link}>{user.email}</span>) is unverified.
+          <span className={styles.link}>{user.email}</span>) is{' '}
+          {user.emailVerified ? 'verified' : 'unverified'}.
         </p>
       </Container>
       <Spacer size={1} axis="horizontal" />

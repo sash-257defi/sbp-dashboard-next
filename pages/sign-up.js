@@ -8,9 +8,12 @@ const SignupPage = () => {
   const { data: { user } = {} } = useCurrentUser();
   const router = useRouter();
   useEffect(() => {
-    if (user) {
-      router.replace('/');
-    }
+    const routHandler = async () => {
+      if (user) {
+        await router.replace('/');
+      }
+    };
+    void routHandler();
   }, [user]);
   return (
     !user && (
