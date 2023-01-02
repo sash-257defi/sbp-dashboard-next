@@ -43,7 +43,8 @@ const SignUp = () => {
       setPassword('');
       setName('');
       setUsername('');
-      router.replace('/feed');
+      // router.replace('/feed');
+      router.replace('/email-verify');
     } catch (e) {
       toast.error(e.message);
     } finally {

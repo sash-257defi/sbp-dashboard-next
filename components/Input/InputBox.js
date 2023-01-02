@@ -27,12 +27,15 @@ const InputBox = function Input({
           onChange={onChange}
           value={value}
         />
-        <label className={styles.label}>{label}</label>
-        {error ? (
-          <div className={styles.error}>{errorMessage}</div>
-        ) : (
-          <div className={styles.empty} />
-        )}
+        <label className={size === 'small' ? styles.small_label : styles.label}>
+          {label}
+        </label>
+        {errorMessage &&
+          (error ? (
+            <div className={styles.error}>{errorMessage}</div>
+          ) : (
+            <div className={styles.empty} />
+          ))}
       </div>
     </div>
   );

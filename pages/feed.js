@@ -9,10 +9,13 @@ const FeedPage = () => {
   useEffect(() => {
     if (user === null) {
       router.replace('/');
+    } else if (!user?.emailVerified) {
+      router.replace('/email-verify');
     }
-  }, [user]);
+  }, [router, user]);
   return (
-    user && (
+    user &&
+    user.emailVerified && (
       <>
         <Head>
           <title>Feed</title>

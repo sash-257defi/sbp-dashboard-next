@@ -8,18 +8,23 @@
 .root label {
   width: auto;
 }
-
+.floating_textArea {
+  width: 100%;
+  min-height: 100px;
+  max-width: 100%;
+  max-height: 100px;
+}
 .floating_label {
   position: relative;
   /*margin-bottom: 10px;*/
   width: 100%;
 }
-.error_floating_input {
+.error_floating_textArea {
   position: relative;
   margin-bottom: 10px;
   width: 100%;
 }
-.error_floating_input {
+.error_floating_textArea {
   font-size: 14px;
   padding: 12px;
   display: inline-flex;
@@ -29,7 +34,7 @@
   height: 40px;
   background-color: transparent;
 }
-.floating_input,
+.floating_textArea,
 .floating-select {
   font-size: 14px;
   padding: 12px;
@@ -42,35 +47,24 @@
   /*border: none;*/
   /*border: 1px solid var(--accents-2);*/
 }
-.floating_input:focus:required:not(:placeholder-shown) {
-  border-color: #9ac33d;
-}
-.floating_input:required:not(:placeholder-shown) {
-  border-color: #9ac33d;
-}
+/*.floating_textArea:focus:required:not(:placeholder-shown) {*/
+/*  border-color: #9ac33d;*/
+/*}*/
+/*.floating_textArea:required:not(:placeholder-shown) {*/
+/*  border-color: #9ac33d;*/
+/*}*/
 
-.floating_input:focus,
+.floating_textArea:focus,
 .floating-select:focus {
   outline: 0;
   border: 1px solid var(--accents-8);
 }
-.error_floating_input:focus,
+.error_floating_textArea:focus,
 .floating-select:focus {
   outline: 0;
   border: 1px solid var(--error);
 }
-.small_label {
-  color: #999;
-  font-size: 14px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 10px;
-  top: 12px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
-}
+
 .label {
   color: #999;
   font-size: 14px;
@@ -78,14 +72,14 @@
   position: absolute;
   pointer-events: none;
   left: 10px;
-  top: 16px;
+  top: 15px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all;
 }
 
-.floating_input:focus ~ label,
-.floating_input:not(:placeholder-shown) ~ label {
+.floating_textArea:focus ~ label,
+.floating_textArea:not(:placeholder-shown) ~ label {
   top: -9px;
   font-size: 14px;
   color: var(--foreground);
@@ -93,8 +87,8 @@
   width: auto;
   padding: 0px 4px;
 }
-.error_floating_input:focus ~ label,
-.error_floating_input:not(:placeholder-shown) ~ label {
+.error_floating_textArea:focus ~ label,
+.error_floating_textArea:not(:placeholder-shown) ~ label {
   top: -9px;
   font-size: 14px;
   color: var(--error);
@@ -122,8 +116,8 @@
   margin-bottom: 10px;
 }
 /* active state */
-.floating_input:focus ~ .bar:before,
-.floating_input:focus ~ .bar:after,
+.floating_textArea:focus ~ .bar:before,
+.floating_textArea:focus ~ .bar:after,
 .floating-select:focus ~ .bar:before,
 .floating-select:focus ~ .bar:after {
   width: 50%;
@@ -147,23 +141,13 @@
 }
 
 /* active state */
-.floating_input:focus ~ .highlight,
+.floating_textArea:focus ~ .highlight,
 .floating-select:focus ~ .highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
 }
 .large {
-  height: 48px;
+  height: 50px;
   font-size: 1rem;
-}
-.small {
-  height: 40px;
-  font-size: 1rem;
-}
-.show_password {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  padding: 10px 0px;
 }
