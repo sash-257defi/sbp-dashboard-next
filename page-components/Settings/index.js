@@ -1,7 +1,6 @@
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
-import { Input, Textarea } from '@/components/Input';
-import { Container, Spacer } from '@/components/Layout';
+import { Spacer } from '@/components/Layout';
 import Wrapper from '@/components/Layout/Wrapper';
 import { fetcher } from '@/lib/fetch';
 import { useCurrentUser } from '@/lib/user';
@@ -9,60 +8,17 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Settings.module.css';
-const EmailVerify = ({ user }) => {
-  const [status, setStatus] = useState();
-  const verify = useCallback(async () => {
-    try {
-      setStatus('loading');
-      await fetcher('/api/user/email/verify', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
-      }).then((res) => {
-        console.log('Response received', res);
-      })
-      toast.success(
-        'An email has been sent to your mailbox. Follow the instruction to verify your email.'
-      );
-      setStatus('success');
-    } catch (e) {
-      toast.error(e.message);
-      setStatus('');
-    }
-  }, []);
-  if (user.emailVerified) return null;
-  return (
-    <Container className={styles.note}>
-      <Container flex={1}>
-        <p>
-          <strong>Note:</strong> <span>Your email</span> (
-          <span className={styles.link}>{user.email}</span>) is{' '}
-          {user.emailVerified ? 'verified' : 'unverified'}.
-        </p>
-      </Container>
-      <Spacer size={1} axis="horizontal" />
-      <Button
-        loading={status === 'loading'}
-        size="small"
-        onClick={verify}
-        disabled={status === 'success'}
-      >
-        Verify
-      </Button>
-    </Container>
-  );
-};
+import TextareaBox from '@/components/Input/TextAreaBox';
+import InputBox from '@/components/Input/InputBox';
 
 const Auth = () => {
-  const oldPasswordRef = useRef();
-  const newPasswordRef = useRef();
-
   const [isLoading, setIsLoading] = useState(false);
+  const [isOldError, setIsOldError] = useState(false);
+  const [isNewError, setIsNewError] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
-  const onSubmit = useCallback(async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     try {
       setIsLoading(true);
@@ -70,8 +26,8 @@ const Auth = () => {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          oldPassword: oldPasswordRef.current.value,
-          newPassword: newPasswordRef.current.value,
+          oldPassword: oldPassword,
+          newPassword: newPassword,
         }),
       });
       toast.success('Your password has been updated');
@@ -79,27 +35,64 @@ const Auth = () => {
       toast.error(e.message);
     } finally {
       setIsLoading(false);
-      oldPasswordRef.current.value = '';
-      newPasswordRef.current.value = '';
+      setOldPassword('');
+      setNewPassword('');
     }
-  }, []);
-
+  };
+  const oldPasswordHandler = (e) => {
+    const value = e.target.value;
+    if (value) {
+      if (value?.length >= 7) {
+        setIsOldError(false);
+        setOldPassword(value);
+      } else {
+        setOldPassword(value);
+        setIsOldError(true);
+      }
+    } else {
+      setIsOldError(false);
+      setOldPassword('');
+    }
+  };
+  const newPasswordHandler = (e) => {
+    const value = e.target.value;
+    if (value) {
+      if (value?.length >= 7) {
+        setIsNewError(false);
+        setNewPassword(value);
+      } else {
+        setNewPassword(value);
+        setIsNewError(true);
+      }
+    } else {
+      setIsNewError(false);
+      setNewPassword('');
+    }
+  };
   return (
     <section className={styles.card}>
       <h4 className={styles.sectionTitle}>Password</h4>
       <form onSubmit={onSubmit}>
-        <Input
+        <InputBox
           htmlType="password"
           autoComplete="current-password"
-          ref={oldPasswordRef}
+          value={oldPassword}
+          onChange={oldPasswordHandler}
           label="Old Password"
+          error={isOldError}
+          errorMessage="Password length must be at least 7 characters"
+          size={'large'}
         />
         <Spacer size={0.5} axis="vertical" />
-        <Input
+        <InputBox
           htmlType="password"
           autoComplete="new-password"
-          ref={newPasswordRef}
           label="New Password"
+          value={newPassword}
+          onChange={newPasswordHandler}
+          error={isNewError}
+          errorMessage="Password length must be at least 7 characters"
+          size={'large'}
         />
         <Spacer size={0.5} axis="vertical" />
         <Button
@@ -116,10 +109,10 @@ const Auth = () => {
 };
 
 const AboutYou = ({ user, mutate }) => {
-  const usernameRef = useRef();
-  const nameRef = useRef();
-  const bioRef = useRef();
   const profilePictureRef = useRef();
+  const [userName, setUserName] = useState('');
+  const [name, setName] = useState('');
+  const [bio, setBio] = useState('');
 
   const [avatarHref, setAvatarHref] = useState(user.profilePicture);
   const onAvatarChange = useCallback((e) => {
@@ -134,37 +127,34 @@ const AboutYou = ({ user, mutate }) => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      try {
-        setIsLoading(true);
-        const formData = new FormData();
-        formData.append('username', usernameRef.current.value);
-        formData.append('name', nameRef.current.value);
-        formData.append('bio', bioRef.current.value);
-        if (profilePictureRef.current.files[0]) {
-          formData.append('profilePicture', profilePictureRef.current.files[0]);
-        }
-        const response = await fetcher('/api/user', {
-          method: 'PATCH',
-          body: formData,
-        });
-        mutate({ user: response.user }, false);
-        toast.success('Your profile has been updated');
-      } catch (e) {
-        toast.error(e.message);
-      } finally {
-        setIsLoading(false);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      const formData = new FormData();
+      formData.append('username', userName);
+      formData.append('name', name);
+      formData.append('bio', bio);
+      if (profilePictureRef.current.files[0]) {
+        formData.append('profilePicture', profilePictureRef.current.files[0]);
       }
-    },
-    [mutate]
-  );
+      const response = await fetcher('/api/user', {
+        method: 'PATCH',
+        body: formData,
+      });
+      mutate({ user: response.user }, false);
+      toast.success('Your profile has been updated');
+    } catch (e) {
+      toast.error(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    usernameRef.current.value = user.username;
-    nameRef.current.value = user.name;
-    bioRef.current.value = user.bio;
+    setUserName(user.username);
+    setName(user.name);
+    setBio(user.bio);
     profilePictureRef.current.value = '';
     setAvatarHref(user.profilePicture);
   }, [user]);
@@ -173,12 +163,27 @@ const AboutYou = ({ user, mutate }) => {
     <section className={styles.card}>
       <h4 className={styles.sectionTitle}>About You</h4>
       <form onSubmit={onSubmit}>
-        <Input ref={usernameRef} label="Your Username" />
-        <Spacer size={0.5} axis="vertical" />
-        <Input ref={nameRef} label="Your Name" />
-        <Spacer size={0.5} axis="vertical" />
-        <Textarea ref={bioRef} label="Your Bio" />
-        <Spacer size={0.5} axis="vertical" />
+        <InputBox
+          label="Your Username"
+          size={'large'}
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        <Spacer size={1} axis="vertical" />
+        <InputBox
+          label="Your Name"
+          size={'large'}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Spacer size={1} axis="vertical" />
+        <TextareaBox
+          label="Your Bio"
+          size={'large'}
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
+        <Spacer size={1} axis="vertical" />
         <span className={styles.label}>Your Avatar</span>
         <div className={styles.avatar}>
           <Avatar size={96} username={user.username} url={avatarHref} />
@@ -218,7 +223,6 @@ export const Settings = () => {
       <Spacer size={2} axis="vertical" />
       {data?.user ? (
         <>
-          <EmailVerify user={data.user} />
           <AboutYou user={data.user} mutate={mutate} />
           <Auth user={data.user} />
         </>
