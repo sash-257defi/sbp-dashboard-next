@@ -28,9 +28,14 @@ handler.post(async (req, res) => {
     from: MAIL_CONFIG.from,
     subject: `Verification Email for ${process.env.WEB_URI}`,
     html: `
-      <div>
-        <p>Hello, ${req.user.name}</p>
-        <p>Please follow <a href="${process.env.WEB_URI}/verify-email/${token._id}">this link</a> to confirm your email.</p>
+       <div style="width:100%;padding:20px;height:100%;text-align: center">
+          <div style="width:400px;border:1px solid #999;border-radius:10px;padding:10px;margin: auto;">
+              <div style="text-align:center">
+                  <img src="https://sash-257defi.github.io/sbpm-media/sbp-logo.png" alt="Red dot" width="100px" />
+              </div>
+              <h1 style="font-size: 21px;margin-top: 10px;margin-bottom: 10px">Welcome to SellBuyPlay Community</h1>
+              <p>Please follow <a href="${process.env.WEB_URI}/verify-email/${token._id}">this link</a> to confirm your email.</p>
+          </div>
       </div>
       `,
   });
