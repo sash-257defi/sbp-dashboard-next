@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Wrapper>
         <Text color="accents-7" className={styles.text}>
-          Made By SELLBUYPLAY
+            © 2023 SellBuyPlay. All Rights Reserved
         </Text>
         <Spacer size={1} axis="vertical" />
       </Wrapper>

@@ -65,7 +65,7 @@
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 10px;
+  left: 5px;
   top: 12px;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
@@ -87,7 +87,7 @@
 .floating_input:focus ~ label,
 .floating_input:not(:placeholder-shown) ~ label {
   top: -9px;
-  font-size: 14px;
+  font-size: 11px;
   color: var(--foreground);
   background: var(--accents-1);
   width: auto;
@@ -96,9 +96,9 @@
 .error_floating_input:focus ~ label,
 .error_floating_input:not(:placeholder-shown) ~ label {
   top: -9px;
-  font-size: 14px;
+  font-size: 11px;
   color: var(--error);
-  background: white;
+  background: var(--accents-1);
   width: auto;
   padding: 0px 4px;
   /*background:#000000*/
@@ -107,12 +107,13 @@
 .floating-select:focus ~ label,
 .floating-select:not([value='']):valid ~ label {
   top: -18px;
-  font-size: 14px;
-  color: #5264ae;
+  font-size: 11px;
+  color: #9ac33d;
 }
 
 .error {
   color: var(--error);
+  font-size: 11px;
   /*padding: 0 8px;*/
 }
 .empty {

@@ -1,5 +1,6 @@
 /* Inspired by Vercel design */
 @import 'node_modules/modern-normalize/modern-normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500;600;700&display=swap');
 
 :root {
   --background: #fff;
@@ -21,13 +22,20 @@
   --error: #ed2228;
   --error-dark: #c50000;
   --secondary: #666;
+  /* SBP */
+  --color-red: #ed2228;
+  --color-yellow: #fcae1b;
+  --color-green: #9ac33d;
+  --color-green-dark: #7b9c30; 
+  --color-blue: #0f75bc;
+  --color-dark-blue: #1869b0;
   --header-background: hsla(0, 0%, 100%, 0.8);
   --shadow-smallest: 0px 2px 4px rgba(0, 0, 0, 0.1);
   --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
   --shadow-large: 0 30px 60px rgba(0, 0, 0, 0.12);
 
-  --link: var(--success);
-  --nav-height: 48px;
+  --link: var(--color-yellow);
+  --nav-height: 5rem;
 }
 
 [data-theme='dark'] {
@@ -49,9 +57,25 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
   color: var(--foreground);
-  background-color: var(--background);
+  background:linear-gradient(0deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3)), url("../public/static-bg.png");
+  background-color: #000000; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+a {
+  transition: all 0.2s ease-in-out;
+}
+
+a, a:visited {
+  color: var(--color-white);
+  text-decoration: none!important;
+}
+
+a:hover {
+  color: var(--color-yellow);
 }

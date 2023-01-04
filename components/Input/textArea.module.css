@@ -90,7 +90,7 @@
 .error_floating_textArea:focus ~ label,
 .error_floating_textArea:not(:placeholder-shown) ~ label {
   top: -9px;
-  font-size: 14px;
+  font-size: 11px;
   color: var(--error);
   background: white;
   width: auto;
@@ -101,7 +101,7 @@
 .floating-select:focus ~ label,
 .floating-select:not([value='']):valid ~ label {
   top: -18px;
-  font-size: 14px;
+  font-size: 11px;
   color: #5264ae;
 }
 
