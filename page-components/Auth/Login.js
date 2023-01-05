@@ -1,5 +1,4 @@
 import { Button } from '@/components/Button'
-import { ButtonLink } from '@/components/Button/Button'
 import { Spacer, Wrapper } from '@/components/Layout'
 import { TextLink } from '@/components/Text'
 import { fetcher } from '@/lib/fetch'
