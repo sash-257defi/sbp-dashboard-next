@@ -5,14 +5,13 @@ import { fetcher } from '@/lib/fetch';
 import { useCurrentUser } from '@/lib/user';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Auth.module.css';
 import InputBox from '@/components/Input/InputBox';
 
 const SignUp = () => {
-  const { mutate } = useCurrentUser();
-
+  const { data: { user } = {}, mutate } = useCurrentUser();
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isUserError, setIsUserError] = useState(false);
@@ -21,8 +20,16 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [isEmailError, setIsEmailError] = useState(false);
+  const [isUser, setIsUser] = useState(false);
 
   const router = useRouter();
+  useEffect(() => {
+    if (user) {
+      router.replace('/');
+    } else {
+      setIsUser(true);
+    }
+  }, [router, user]);
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -101,6 +108,7 @@ const SignUp = () => {
       setUsername('');
     }
   };
+  if (!isUser) return null;
   return (
     <Wrapper className={styles.root}>
       <div className={styles.main}>

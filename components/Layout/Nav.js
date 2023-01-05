@@ -1,6 +1,6 @@
 import { Avatar } from '@/components/Avatar';
 import { Button, ButtonLink } from '@/components/Button';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+// import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { fetcher } from '@/lib/fetch';
 import { useCurrentUser } from '@/lib/user';
 import Link from 'next/link';
@@ -55,7 +55,7 @@ const UserMenu = ({ user, mutate }) => {
     } catch (e) {
       toast.error(e.message);
     }
-  }, [mutate]);
+  }, [mutate, router]);
 
   return (
     <div className={styles.user}>
@@ -80,13 +80,13 @@ const UserMenu = ({ user, mutate }) => {
             <Link passHref href="/settings">
               <a className={styles.item}>Settngs</a>
             </Link>
-            <div className={styles.item} style={{ cursor: 'auto' }}>
-              <Container alignItems="center">
-                <span>Theme</span>
-                <Spacer size={0.5} axis="horizontal" />
-                <ThemeSwitcher />
-              </Container>
-            </div>
+            {/*<div className={styles.item} style={{ cursor: 'auto' }}>*/}
+            {/*  <Container alignItems="center">*/}
+            {/*    <span>Theme</span>*/}
+            {/*    <Spacer size={0.5} axis="horizontal" />*/}
+            {/*    <ThemeSwitcher />*/}
+            {/*  </Container>*/}
+            {/*</div>*/}
             <button onClick={onSignOut} className={styles.item}>
               Sign out
             </button>
@@ -110,7 +110,7 @@ const Nav = () => {
         >
           <Link href="/">
             <a className={styles.logo}>
-              <Image src={logo_img} alt={''} />
+              <Image src={logo_img} alt={''} width={170} height={26} />
             </a>
           </Link>
           <Container>

@@ -10,12 +10,14 @@ export default function UserPage({ user }) {
   const { data } = useCurrentUser();
   const router = useRouter();
   useEffect(() => {
-    if (data?.user === null) {
-      router.replace('/');
-    } else if (!data?.user?.emailVerified) {
-      router.replace('/email-verify');
+    if (data) {
+      if (data?.user === null) {
+        router.replace('/');
+      } else if (!data?.user?.emailVerified) {
+        router.replace('/email-verify');
+      }
     }
-  }, [data]);
+  }, [router, data?.user, data]);
   return (
     data?.user && (
       <>

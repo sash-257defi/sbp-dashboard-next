@@ -19,9 +19,14 @@ const Login = () => {
   const [isEmailError, setIsEmailError] = useState(false);
   const { data: { user } = {}, mutate, isValidating } = useCurrentUser();
   const router = useRouter();
+  const [isUser, setIsUser] = useState(false);
   useEffect(() => {
     if (isValidating) return;
-    if (user) router.replace('/feed');
+    if (user) {
+      router.replace('/feed');
+    } else {
+      setIsUser(true);
+    }
   }, [user, router, isValidating]);
   const onSubmit = async (event) => {
     setIsLoading(true);
@@ -81,6 +86,7 @@ const Login = () => {
       setPassword('');
     }
   };
+  if (!isUser) return null;
   return (
     <Wrapper className={styles.root}>
       <div className={styles.main}>
