@@ -8,7 +8,8 @@ import { useRouter } from 'next/router'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import toast from 'react-hot-toast'
 import styles from './Settings.module.css'
-import TextareaBox from '@/components/Input/TextAreaBox'
+import TextareaBox from '@/components/Input/TextareaBox'
+//import TextareaBox from '@/components/Input/TextAreaBox'
 import InputBox from '@/components/Input/InputBox'
 
 const Auth = () => {
