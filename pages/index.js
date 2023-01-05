@@ -1,7 +1,7 @@
 // import { Index } from '@/page-components/Index';
-import { Login } from '@/page-components/Auth';
+import { Login } from '@/page-components/Auth'
 const IndexPage = () => {
-  return <Login />;
-};
+    return <Login />
+}
 
-export default IndexPage;
+export default IndexPage

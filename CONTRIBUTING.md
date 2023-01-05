@@ -8,9 +8,9 @@ Following this guideline improves communication and organization, which helps sa
 
 I welcome all contributions from the community. There are many ways to contribute:
 
-- :art: Submit PR to fix bugs, enhance/add existed/new features.
-- :children_crossing: Submit bug reports and feature requests.
-- :pencil: Improve documentation and writing examples.
+-   :art: Submit PR to fix bugs, enhance/add existed/new features.
+-   :children_crossing: Submit bug reports and feature requests.
+-   :pencil: Improve documentation and writing examples.
 
 However, please avoid using the issue tracker for support questions. You can receive help on my [Spectrum community](https://spectrum.chat/luvbitstudio).
 
@@ -19,13 +19,14 @@ However, please avoid using the issue tracker for support questions. You can rec
 ### Bug reports
 
 If you are submitting a :bug: bug report, please:
-- Use a clear and descriptive title. Describe the behavior you observed and the expected behavior.
-- Describe the exact steps which reproduce the problem. A minimal reproduction repo is greatly appreciated.
-- Include Node version, OS, or other information that may be helpful in the troubleshooting.
+
+-   Use a clear and descriptive title. Describe the behavior you observed and the expected behavior.
+-   Describe the exact steps which reproduce the problem. A minimal reproduction repo is greatly appreciated.
+-   Include Node version, OS, or other information that may be helpful in the troubleshooting.
 
 ### Process on submitting a PR
 
-*Generally, all pull requests should have references to an issue.*
+_Generally, all pull requests should have references to an issue._
 
 If you are :sparkles: **adding a new feature** or :zap: **improving an algorithm**, please first [create an issue](../../issues/new) for discussion.
 
@@ -49,8 +50,8 @@ The steps to submit a PR are:
 
 ### Commit message
 
-- Use the present tense and imperative mood ("Add feature" instead of "Adds feature" or "Added feature")
-- Consider starting the commit message with an applicable emoji (ex. [gitmoji](https://gitmoji.carloscuesta.me)) for a more beautiful world :rainbow:.
+-   Use the present tense and imperative mood ("Add feature" instead of "Adds feature" or "Added feature")
+-   Consider starting the commit message with an applicable emoji (ex. [gitmoji](https://gitmoji.carloscuesta.me)) for a more beautiful world :rainbow:.
 
 :heart: Thank you,
 Hoang Vo

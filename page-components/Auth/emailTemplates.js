@@ -1,5 +1,5 @@
 export const EmailTemplates = (
-  token
+    token,
 ) => ` <div style="width:100%;padding:20px;height:100%;text-align: center;background:#000;">
     <div style="width:400px;border:1px solid #3e3e3e;border-radius:10px;padding:10px;margin: auto;color:white">
       <div style="text-align:center">
@@ -18,4 +18,4 @@ export const EmailTemplates = (
         to confirm your email.
       </p>
     </div>
-  </div>`;
+  </div>`

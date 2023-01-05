@@ -1,15 +1,15 @@
-import { Login } from '@/page-components/Auth';
-import Head from 'next/head';
+import { Login } from '@/page-components/Auth'
+import Head from 'next/head'
 
 const LoginPage = () => {
-  return (
-    <>
-      <Head>
-        <title>Login</title>
-      </Head>
-      <Login />
-    </>
-  );
-};
+    return (
+        <>
+            <Head>
+                <title>Login</title>
+            </Head>
+            <Login />
+        </>
+    )
+}
 
-export default LoginPage;
+export default LoginPage
