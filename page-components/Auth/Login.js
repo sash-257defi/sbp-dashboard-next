@@ -20,16 +20,13 @@ const Login = () => {
   const { data: { user } = {}, mutate, isValidating } = useCurrentUser();
   const router = useRouter();
   const [isUser, setIsUser] = useState(false);
-  const userHandler = async (user) => {
+  useEffect(() => {
     if (isValidating) return;
     if (user) {
-      await router.replace('/feed');
+      router.replace('/feed');
     } else {
-      await setIsUser(true);
+      setIsUser(true);
     }
-  };
-  useEffect(() => {
-    userHandler(user);
   }, [user, router, isValidating]);
   const onSubmit = async (event) => {
     setIsLoading(true);

@@ -55,7 +55,7 @@ const UserMenu = ({ user, mutate }) => {
     } catch (e) {
       toast.error(e.message);
     }
-  }, [mutate]);
+  }, [mutate, router]);
 
   return (
     <div className={styles.user}>
@@ -110,7 +110,7 @@ const Nav = () => {
         >
           <Link href="/">
             <a className={styles.logo}>
-              <Image src={logo_img} alt={''} />
+              <Image src={logo_img} alt={''} width={170} height={26} />
             </a>
           </Link>
           <Container>
