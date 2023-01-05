@@ -1,6 +1,5 @@
 import { Avatar } from '@/components/Avatar';
 import { Button } from '@/components/Button';
-import { Input } from '@/components/Input';
 import { Container } from '@/components/Layout';
 import { LoadingDots } from '@/components/LoadingDots';
 import { Text, TextLink } from '@/components/Text';
@@ -8,52 +7,45 @@ import { useCommentPages } from '@/lib/comment';
 import { fetcher } from '@/lib/fetch';
 import { useCurrentUser } from '@/lib/user';
 import Link from 'next/link';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import styles from './Commenter.module.css';
+import InputBox from '@/components/Input/InputBox';
 
 const CommenterInner = ({ user, post }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [content, setContent] = useState('');
 
   const { mutate } = useCommentPages({ postId: post._id });
-
-  const onSubmit = useCallback(
-    async (e) => {
-      e.preventDefault();
-      try {
-        setIsLoading(true);
-        await fetcher(`/api/posts/${post._id}/comments`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ content: content }),
-        });
-        toast.success('You have added a comment');
-        setContent('');
-        // contentRef.current.value = '';
-        // refresh post lists
-        mutate();
-      } catch (e) {
-        toast.error(e.message);
-      } finally {
-        setIsLoading(false);
-      }
-    },
-    [mutate, post._id]
-  );
-
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setIsLoading(true);
+      await fetcher(`/api/posts/${post._id}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: content }),
+      });
+      toast.success('You have added a comment');
+      setContent('');
+      // refresh post lists
+      mutate();
+    } catch (e) {
+      toast.error(e.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
   return (
     <form onSubmit={onSubmit}>
       <Container className={styles.poster}>
         <Avatar size={40} username={user.username} url={user.profilePicture} />
-        <Input
-          // ref={contentRef}
+        <InputBox
           className={styles.input}
-          // placeholder="Add your comment"
-          // ariaLabel="Add your comment"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           label="Add your comment"
+          size={'small'}
         />
         <Button type="success" loading={isLoading}>
           Comment
