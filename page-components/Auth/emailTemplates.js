@@ -1,6 +1,6 @@
 export const EmailTemplates = (
-  token,
-  userName
+    token,
+    userName,
 ) => `<div style="width:100%;height:100%;background:#eeeeee;">
 <table border="0" cellpadding="0" width="100%">
 	<tbody>
@@ -87,4 +87,4 @@ export const EmailTemplates = (
     </tr>
 	</tbody>
 </tabel>
-</div>`;
+</div>`
