@@ -61,3 +61,12 @@
   font-weight: 700;
   text-transform: uppercase;
 }
+
+.FormLinks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 250px));
+  gap: 0;
+  padding: 1rem;
+  align-items: center;
+  justify-items: center;
+}
