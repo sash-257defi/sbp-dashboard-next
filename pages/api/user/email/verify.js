@@ -23,7 +23,7 @@ handler.post(async (req, res) => {
         type: 'emailVerify',
         expireAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
     })
-    const data = EmailTemplates(token)
+    const data = EmailTemplates(token, req.user.username)
     await sendMail({
         to: req.user.email,
         from: MAIL_CONFIG.from,
