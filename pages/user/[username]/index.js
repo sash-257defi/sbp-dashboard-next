@@ -1,34 +1,20 @@
 import React, { useEffect } from 'react'
-import { findUserByUsername } from '@/api-lib/db'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { User } from '@/page-components/User'
+import { findUserByUsername } from '../../../src/api-lib/db'
+import { getMongoDb } from '../../../src/api-lib/mongodb'
+import { User } from '../../../src/pages/User'
 import Head from 'next/head'
-import { useCurrentUser } from '@/lib/user'
-import { useRouter } from 'next/router'
+import AuthRequired from '../../../src/components/AuthRequired'
 
 export default function UserPage({ user }) {
-    const { data } = useCurrentUser()
-    const router = useRouter()
-    useEffect(() => {
-        if (data) {
-            if (data?.user === null) {
-                router.replace('/')
-            } else if (!data?.user?.emailVerified) {
-                router.replace('/email-verify')
-            }
-        }
-    }, [router, data?.user, data])
     return (
-        data?.user && (
-            <>
-                <Head>
-                    <title>
-                        {user.name} (@{user.username})
-                    </title>
-                </Head>
-                <User user={user} />
-            </>
-        )
+        <AuthRequired>
+            <Head>
+                <title>
+                    {user.name} (@{user.username})
+                </title>
+            </Head>
+            <User user={user} />
+        </AuthRequired>
     )
 }
 
