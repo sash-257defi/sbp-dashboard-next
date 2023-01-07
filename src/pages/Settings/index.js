@@ -210,7 +210,14 @@ const AboutYou = ({ user, mutate }) => {
 }
 
 export const Settings = () => {
-    const { data, mutate } = useCurrentUser()
+    const { data, error, mutate } = useCurrentUser()
+    const router = useRouter()
+    useEffect(() => {
+        if (!data && !error) return
+        if (!data.user) {
+            router.replace('/login')
+        }
+    }, [router, data, error])
     return (
         <Wrapper className={styles.wrapper}>
             <Spacer size={2} axis="vertical" />
