@@ -1,0 +1,16 @@
+.root {
+    height: calc(100vh - var(--nav-height));
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.sub_children {
+    width: 100%;
+    /*height: 100%;*/
+    height: calc(100vh - var(--nav-height));
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--nav-height);
+    justify-content: space-between;
+    /*overflow-y: scroll;*/
+}

@@ -1,6 +1,6 @@
-import { SignUp } from '@/page-components/Auth'
+import SignUp from '../src/pages/Auth/SignUp'
 import Head from 'next/head'
-import { useCurrentUser } from '@/lib/user'
+import { useCurrentUser } from '../src/lib/user'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 

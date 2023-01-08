@@ -1,5 +1,4 @@
-// import { Index } from '@/page-components/Index';
-import { Login } from '@/page-components/Auth'
+import Login from '../src/pages/Auth/Login'
 const IndexPage = () => {
     return <Login />
 }

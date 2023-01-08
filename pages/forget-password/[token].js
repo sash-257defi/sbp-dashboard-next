@@ -1,6 +1,6 @@
-import { findTokenByIdAndType } from '@/api-lib/db'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { ForgetPasswordToken } from '@/page-components/ForgetPassword'
+import { findTokenByIdAndType } from '../../src/api-lib/db'
+import { getMongoDb } from '../../src/api-lib/mongodb'
+import { ForgetPasswordToken } from '../../src/pages/ForgetPassword'
 import Head from 'next/head'
 
 const ResetPasswordTokenPage = ({ valid, token }) => {

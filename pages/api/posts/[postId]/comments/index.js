@@ -1,9 +1,9 @@
-import { ValidateProps } from '@/api-lib/constants'
-import { findPostById } from '@/api-lib/db'
-import { findComments, insertComment } from '@/api-lib/db/comment'
-import { auths, validateBody } from '@/api-lib/middlewares'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { ncOpts } from '@/api-lib/nc'
+import { ValidateProps } from '../../../../../src/api-lib/constants'
+import { findPostById } from '../../../../../src/api-lib/db'
+import { findComments, insertComment } from '../../../../../src/api-lib/db/comment'
+import { auths, validateBody } from '../../../../../src/api-lib/middlewares'
+import { getMongoDb } from '../../../../../src/api-lib/mongodb'
+import { ncOpts } from '../../../../../src/api-lib/nc'
 import nc from 'next-connect'
 
 const handler = nc(ncOpts)

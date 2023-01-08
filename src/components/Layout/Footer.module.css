@@ -1,0 +1,17 @@
+.footer {
+    font-size: 0.875rem;
+    padding: 2rem 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text {
+    font-weight: 300;
+}
+
+@media only screen and (max-width: 600px) {
+    .footer {
+        padding: 1rem 0;
+    }
+}
