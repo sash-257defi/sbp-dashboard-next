@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { findUserByUsername } from '../../../src/api-lib/db'
 import { getMongoDb } from '../../../src/api-lib/mongodb'
 import { User } from '../../../src/pages/User'
