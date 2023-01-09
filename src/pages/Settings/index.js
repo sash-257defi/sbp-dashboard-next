@@ -5,7 +5,7 @@ import Wrapper from '../../components/Layout/Wrapper'
 import { fetcher } from '../../lib/fetch'
 import { useCurrentUser } from '../../lib/user'
 import { useRouter } from 'next/router'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import styles from './Settings.module.css'
 import TextareaBox from '../../components/Input/TextareaBox'
@@ -109,22 +109,19 @@ const Auth = () => {
 }
 
 const AboutYou = ({ user, mutate }) => {
-    const profilePictureRef = useRef()
     const [userName, setUserName] = useState('')
     const [name, setName] = useState('')
     const [bio, setBio] = useState('')
-
     const [avatarHref, setAvatarHref] = useState(user.profilePicture)
-    const onAvatarChange = useCallback((e) => {
-        const file = e.currentTarget.files?.[0]
+    const onAvatarChange = (e) => {
+        const file = e?.target?.files[0]
         if (!file) return
         const reader = new FileReader()
         reader.onload = (l) => {
-            setAvatarHref(l.currentTarget.result)
+            setAvatarHref(l.target.result)
         }
         reader.readAsDataURL(file)
-    }, [])
-
+    }
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit = async (e) => {
@@ -135,9 +132,7 @@ const AboutYou = ({ user, mutate }) => {
             formData.append('username', userName)
             formData.append('name', name)
             formData.append('bio', bio)
-            if (profilePictureRef.current.files[0]) {
-                formData.append('profilePicture', profilePictureRef.current.files[0])
-            }
+            formData.append('profilePicture', avatarHref)
             const response = await fetcher('/api/user', {
                 method: 'PATCH',
                 body: formData,
@@ -155,10 +150,8 @@ const AboutYou = ({ user, mutate }) => {
         setUserName(user.username)
         setName(user.name)
         setBio(user.bio)
-        profilePictureRef.current.value = ''
         setAvatarHref(user.profilePicture)
     }, [user])
-
     return (
         <section className={styles.card}>
             <h4 className={styles.sectionTitle}>About You</h4>
@@ -191,7 +184,6 @@ const AboutYou = ({ user, mutate }) => {
                         aria-label="Your Avatar"
                         type="file"
                         accept="image/*"
-                        ref={profilePictureRef}
                         onChange={onAvatarChange}
                     />
                 </div>

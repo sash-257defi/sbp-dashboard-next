@@ -135,7 +135,7 @@ const Nav = () => {
                     >
                         <Link href="/dashboard">
                             <a className={styles.logo}>
-                                <Image src={logo_img} alt={''} width={170} height={26} />
+                                <Image src={logo_img} alt={'SBP'} width={170} height={26} />
                             </a>
                         </Link>
                         <div className={styles.rightContainer}>
@@ -169,11 +169,11 @@ const Nav = () => {
                         {user ? (
                             <div className={styles.menuButton}>
                                 <Image
+                                    alt={'SBP'}
                                     src={menu_img}
                                     width={25}
                                     height={25}
                                     onClick={toggleNavDrawer}
-                                    alt={''}
                                 />
                             </div>
                         ) : null}
@@ -185,7 +185,7 @@ const Nav = () => {
                 <div className={styles.drawerClose}>
                     <Image
                         src={cancel_img}
-                        alt={''}
+                        alt={'SBP'}
                         width={20}
                         height={20}
                         onClick={toggleNavDrawer}
