@@ -180,55 +180,54 @@ const Nav = () => {
                     </Container>
                 </Wrapper>
             </nav>
-            {navDrawerOpen ? (
-                <div className={styles.drawerContainer}>
-                    <div className={styles.drawerClose}>
-                        <Image
-                            src={cancel_img}
-                            alt={'SBP'}
-                            width={20}
-                            height={20}
-                            onClick={toggleNavDrawer}
-                        />
-                    </div>
-                    <div className={styles.drawerNav}>
-                        {['claim', 'wallet', 'nft', 'withdraw', 'buy', 'exchange'].map((item) => {
-                            return (
-                                <p
-                                    className={
-                                        router?.pathname === `/${item}`
-                                            ? styles.isActive
-                                            : styles.navItem
-                                    }
-                                    key={item}
-                                    onClick={() => navClickHandler(item)}
-                                >
-                                    {firstLetterUppercase(item)}
-                                </p>
-                            )
-                        })}
-                        <div style={{ width: '100%', height: 1, background: '#FFFFFF' }} />
-                        {['profile', 'settings', 'Sign out'].map((item) => {
-                            return (
-                                <p
-                                    className={
-                                        router?.pathname === `/${item}`
-                                            ? styles.isActive
-                                            : item === 'profile' &&
-                                              router.pathname.includes('/user/')
-                                            ? styles.isActive
-                                            : styles.navItem
-                                    }
-                                    key={item}
-                                    onClick={() => navClickHandler(item)}
-                                >
-                                    {firstLetterUppercase(item)}
-                                </p>
-                            )
-                        })}
-                    </div>
+            {/*{navDrawerOpen ? (*/}
+            <div className={navDrawerOpen ? styles.drawerContainerOpen : styles.drawerContainer}>
+                <div className={styles.drawerClose}>
+                    <Image
+                        src={cancel_img}
+                        alt={'SBP'}
+                        width={20}
+                        height={20}
+                        onClick={toggleNavDrawer}
+                    />
                 </div>
-            ) : null}
+                <div className={styles.drawerNav}>
+                    {['claim', 'wallet', 'nft', 'withdraw', 'buy', 'exchange'].map((item) => {
+                        return (
+                            <p
+                                className={
+                                    router?.pathname === `/${item}`
+                                        ? styles.isActive
+                                        : styles.navItem
+                                }
+                                key={item}
+                                onClick={() => navClickHandler(item)}
+                            >
+                                {firstLetterUppercase(item)}
+                            </p>
+                        )
+                    })}
+                    <div style={{ width: '100%', height: 1, background: '#FFFFFF' }} />
+                    {['profile', 'settings', 'Sign out'].map((item) => {
+                        return (
+                            <p
+                                className={
+                                    router?.pathname === `/${item}`
+                                        ? styles.isActive
+                                        : item === 'profile' && router.pathname.includes('/user/')
+                                        ? styles.isActive
+                                        : styles.navItem
+                                }
+                                key={item}
+                                onClick={() => navClickHandler(item)}
+                            >
+                                {firstLetterUppercase(item)}
+                            </p>
+                        )
+                    })}
+                </div>
+            </div>
+            {/*) : null}*/}
         </div>
     )
 }

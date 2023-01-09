@@ -24,7 +24,6 @@ handler.post(async (req, res) => {
         expireAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
     })
     const data = EmailTemplates(token, req.user.username)
-    console.log('Data =>', data)
     await sendMail({
         to: req.user.email,
         from: MAIL_CONFIG.from,
