@@ -1,10 +1,11 @@
 .root {
-  box-shadow: var(--shadow-large);
-  border-radius: 8px;
-  margin: 0 auto 18px;
-  max-width: 720px;
-  padding: 32px;
-  background-color: var(--background);
+    box-shadow: var(--shadow-large);
+    border-radius: 8px;
+    margin: 0 auto 18px;
+    max-width: 720px;
+    padding: 32px;
+    background-color: var(--background);
+    width: 100%;
 }
 
 .avatar {

@@ -113,19 +113,36 @@
         width: 100vw;
         height: 100vh;
         z-index: 200;
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: -100%;
         left: 0;
         display: flex;
-        align-items: start;
+        align-items: flex-start;
         flex-direction: column;
         background: #080307;
+        transition: all 0.3s ease-in-out 0s;
+        opacity: 0;
+    }
+    .drawerContainerOpen {
+        width: 100vw;
+        height: 100vh;
+        z-index: 200;
+        position: fixed;
+        /*top: 0;*/
+        left: 0;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        background: #080307;
+        transition: all 0.3s ease-in-out 0s;
+        opacity: 1;
+        top: 0;
     }
 
     .drawerClose {
         width: 100%;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         padding: 16px;
     }
 
@@ -142,17 +159,17 @@
         width: 100%;
         margin: 0;
         padding: 16px 32px;
-        font-weight: bold;
+        /*font-weight: bold;*/
         font-size: 18px;
     }
 
     .isActive {
         width: 100%;
         /*background: blue;*/
-        color: #ea1a23;
+        color: rgb(242, 150, 12);
         margin: 0;
         padding: 16px 32px;
-        font-weight: bold;
+        /*font-weight: bold;*/
         font-size: 18px;
     }
 }

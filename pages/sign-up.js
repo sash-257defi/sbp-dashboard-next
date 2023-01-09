@@ -1,26 +1,15 @@
 import SignUp from '../src/pages/Auth/SignUp'
 import Head from 'next/head'
-import { useCurrentUser } from '../src/lib/user'
-import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import AuthNotRequired from '../src/components/AuthNotRequired'
 
 const SignupPage = () => {
-    const { data: { user } = {} } = useCurrentUser()
-    const router = useRouter()
-    useEffect(() => {
-        if (user) {
-            router.replace('/')
-        }
-    }, [router, user])
     return (
-        !user && (
-            <>
-                <Head>
-                    <title>Sign up</title>
-                </Head>
-                <SignUp />
-            </>
-        )
+        <AuthNotRequired>
+            <Head>
+                <title>Sign up</title>
+            </Head>
+            <SignUp />
+        </AuthNotRequired>
     )
 }
 

@@ -72,6 +72,7 @@ const EmailVerify = () => {
                         >
                             Verify
                         </Button>
+                        <Spacer size={0.5} axis="vertical" />
                     </form>
                 </div>
             </div>
