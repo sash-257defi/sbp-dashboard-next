@@ -7,8 +7,8 @@ import { slugUsername } from '../../../src/lib/user'
 import { v2 as cloudinary } from 'cloudinary'
 import multer from 'multer'
 import nc from 'next-connect'
-
-const upload = multer({ dest: '/tmp' })
+const storage = multer.memoryStorage()
+const upload = multer(storage)
 const handler = nc(ncOpts)
 
 if (process.env.CLOUDINARY_URL) {
@@ -52,8 +52,8 @@ handler.patch(
         const db = await getMongoDb()
 
         let profilePicture
-        if (req.file) {
-            const image = await cloudinary.uploader.upload(req.file.path, {
+        if (req.body.profilePicture) {
+            const image = await cloudinary.uploader.upload(req.body.profilePicture, {
                 width: 512,
                 height: 512,
                 crop: 'fill',
