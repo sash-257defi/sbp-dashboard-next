@@ -101,7 +101,7 @@ const Nav = () => {
             })
             toast.success('You have been signed out')
             mutate({ user: null })
-            router.replace('/')
+            router.replace('/login')
         } catch (e) {
             toast.error(e.message)
         }
@@ -124,6 +124,10 @@ const Nav = () => {
         }
     }
 
+    const handleRoute = (path) => {
+        router.push(path)
+    }
+
     return (
         <div>
             <nav className={styles.nav}>
@@ -133,11 +137,12 @@ const Nav = () => {
                         alignItems="center"
                         justifyContent="space-between"
                     >
-                        <Link href="/dashboard">
-                            <a className={styles.logo}>
-                                <Image src={logo_img} alt={'SBP'} width={170} height={26} />
-                            </a>
-                        </Link>
+                        <a
+                            className={styles.logo}
+                            onClick={() => (user ? handleRoute('/dashboard') : null)}
+                        >
+                            <Image src={logo_img} alt={'SBP'} width={170} height={26} />
+                        </a>
                         <div className={styles.rightContainer}>
                             <Container>
                                 {user ? (
@@ -146,22 +151,23 @@ const Nav = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <Link passHref href="/login">
-                                            <ButtonLink
-                                                size="small"
-                                                type="success"
-                                                variant="ghost"
-                                                color="link"
-                                            >
-                                                Log in
-                                            </ButtonLink>
-                                        </Link>
+                                        <ButtonLink
+                                            size="small"
+                                            type="success"
+                                            variant="ghost"
+                                            color="link"
+                                            onClick={() => handleRoute('/login')}
+                                        >
+                                            Log in
+                                        </ButtonLink>
                                         <Spacer axis="horizontal" size={0.25} />
-                                        <Link passHref href="/sign-up">
-                                            <Button size="small" type="success">
-                                                Sign Up
-                                            </Button>
-                                        </Link>
+                                        <Button
+                                            size="small"
+                                            type="success"
+                                            onClick={() => handleRoute('/sign-up')}
+                                        >
+                                            Sign Up
+                                        </Button>
                                     </>
                                 )}
                             </Container>
