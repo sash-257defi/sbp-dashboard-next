@@ -187,7 +187,10 @@ const Nav = () => {
                 </Wrapper>
             </nav>
             {/*{navDrawerOpen ? (*/}
-            <div className={navDrawerOpen ? styles.drawerContainerOpen : styles.drawerContainer}>
+            <div
+                className={navDrawerOpen ? styles.drawerContainerOpen : styles.drawerContainer}
+                style={{ zIndex: navDrawerOpen ? 200 : 199 }}
+            >
                 <div className={styles.drawerClose}>
                     <Image
                         src={cancel_img}

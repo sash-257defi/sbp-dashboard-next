@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 200;
     background-color: var(--header-background);
     box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
     backdrop-filter: saturate(180%) blur(5px);
@@ -74,7 +74,7 @@
     text-align: left;
     transition: ease 0.2s;
     transition-property: background color;
-    font-weight: medium;
+    font-weight: 500;
 }
 
 .item:focus,
@@ -94,7 +94,9 @@
 .drawerContainer {
     display: none;
 }
-
+.drawerContainerOpen {
+    display: none;
+}
 @media only screen and (max-width: 600px) {
     .content {
         /*justify-content: center !important;*/
@@ -126,7 +128,6 @@
     .drawerContainerOpen {
         width: 100vw;
         height: 100vh;
-        z-index: 200;
         position: fixed;
         /*top: 0;*/
         left: 0;
@@ -161,6 +162,11 @@
         padding: 16px 32px;
         /*font-weight: bold;*/
         font-size: 18px;
+    }
+    .navItem:hover {
+        color: rgb(242, 150, 12);
+        width: 100%;
+        background: rgba(238, 238, 238, 0.05);
     }
 
     .isActive {

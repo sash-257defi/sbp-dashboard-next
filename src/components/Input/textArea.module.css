@@ -107,11 +107,12 @@
 
 .error {
   color: var(--error);
+  font-size: 11px;
   /*padding: 0 8px;*/
 }
 .empty {
   background: transparent;
-  height: 16.09px;
+  height: 12.64px;
   width: 100%;
   margin-bottom: 10px;
 }
