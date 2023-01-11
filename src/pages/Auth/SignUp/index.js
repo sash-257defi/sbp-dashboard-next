@@ -25,7 +25,7 @@ const SignUp = () => {
     const router = useRouter()
     useEffect(() => {
         if (user) {
-            router.replace('/')
+            router.push('/')
         } else {
             setIsUser(true)
         }
@@ -50,8 +50,8 @@ const SignUp = () => {
             setPassword('')
             setName('')
             setUsername('')
-            // router.replace('/feed');
-            router.replace('/email-verify')
+            // router.push('/feed');
+            router.push('/email-verify')
         } catch (e) {
             toast.error(e.message)
         } finally {
@@ -178,7 +178,7 @@ const SignUp = () => {
                             Sign up
                         </Button>
                         <div className={styles.footer}>
-                            <Link href="/login" passHref>
+                            <Link href="/" passHref>
                                 <TextLink color="link" variant="highlight">
                                     Already have an account? Log in
                                 </TextLink>

@@ -207,7 +207,7 @@ export const Settings = () => {
     useEffect(() => {
         if (!data && !error) return
         if (!data.user) {
-            router.replace('/login')
+            router.push('/')
         }
     }, [router, data, error])
     return (

@@ -74,7 +74,7 @@ const Commenter = ({ post }) => {
             ) : (
                 <Text color="secondary">
                     Please{' '}
-                    <Link href="/login" passHref>
+                    <Link href="/" passHref>
                         <TextLink color="link" variant="highlight">
                             sign in
                         </TextLink>

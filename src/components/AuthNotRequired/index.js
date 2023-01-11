@@ -10,13 +10,13 @@ const AuthNotRequired = ({ children }) => {
     if (user) {
         if (router.pathname !== '/email-verify') {
             if (!user?.emailVerified) {
-                router.replace('/email-verify')
+                router.push('/email-verify')
             } else {
-                router.replace('/')
+                router.push('/dashboard')
             }
         } else {
             if (user?.emailVerified) {
-                router.replace('/dashboard')
+                router.push('/dashboard')
             } else {
                 return <div style={{ width: '100%' }}>{children}</div>
             }

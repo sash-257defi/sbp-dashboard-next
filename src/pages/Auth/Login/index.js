@@ -22,7 +22,7 @@ const Login = () => {
     useEffect(() => {
         if (isValidating) return
         if (user) {
-            router.replace('/dashboard')
+            router.push('/dashboard')
         } else {
             setIsUser(true)
         }
@@ -35,13 +35,15 @@ const Login = () => {
                 email,
                 password,
             }
-            const response = await fetcher('/api/auth', {
+            await fetcher('/api/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
+            }).then(async (response) => {
+                toast.success('You have been logged in.')
+                await router.push('/dashboard')
+                await mutate({ user: response.user }, false)
             })
-            mutate({ user: response.user }, false)
-            toast.success('You have been logged in.')
             setEmail('')
             setPassword('')
         } catch (e) {
