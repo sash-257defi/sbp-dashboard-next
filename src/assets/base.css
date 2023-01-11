@@ -74,7 +74,7 @@ a {
 
 a,
 a:visited {
-    color: var(--color-white);
+    color: var(--foreground);
     text-decoration: none !important;
 }
 
@@ -83,7 +83,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 7px;
 }
 
 /* Track */
@@ -95,13 +95,13 @@ a:hover {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #0f75bc;
+    background: #555657;
     border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #1869b0;
+    background: #6a6a6a;
 }
 
 @media only screen and (max-width: 600px) {
