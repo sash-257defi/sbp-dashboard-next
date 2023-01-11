@@ -34,7 +34,7 @@ const EmailVerify = () => {
                 'An email has been sent to your mailbox. Follow the instruction to verify your email.',
             )
             setStatus('success')
-            router.replace('/feed')
+            router.push('/dashboard')
         } catch (e) {
             toast.error(e.message)
             setStatus('')

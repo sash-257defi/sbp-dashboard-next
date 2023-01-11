@@ -52,8 +52,8 @@ const UserMenu = ({ user, mutate }) => {
                 method: 'DELETE',
             })
             toast.success('You have been signed out')
-            mutate({ user: null })
-            router.replace('/')
+            await router.push('/')
+            await mutate({ user: null })
         } catch (e) {
             toast.error(e.message)
         }
@@ -100,8 +100,8 @@ const Nav = () => {
                 method: 'DELETE',
             })
             toast.success('You have been signed out')
-            mutate({ user: null })
-            router.replace('/login')
+            await router.push('/')
+            await mutate({ user: null })
         } catch (e) {
             toast.error(e.message)
         }
@@ -156,7 +156,7 @@ const Nav = () => {
                                             type="success"
                                             variant="ghost"
                                             color="link"
-                                            onClick={() => handleRoute('/login')}
+                                            onClick={() => handleRoute('/')}
                                         >
                                             Log in
                                         </ButtonLink>

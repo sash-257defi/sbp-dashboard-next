@@ -6,19 +6,19 @@ const AuthRequired = ({ children }) => {
     const { data: { user } = {} } = useCurrentUser()
 
     if (user === null) {
-        router.replace('/login')
+        router.push('/')
     }
 
     if (user) {
         if (router.pathname !== '/email-verify') {
             if (!user?.emailVerified) {
-                router.replace('/email-verify')
+                router.push('/email-verify')
             } else {
                 return <div style={{ width: '100%' }}>{children}</div>
             }
         } else {
             if (user?.emailVerified) {
-                router.replace('/dashboard')
+                router.push('/dashboard')
             } else {
                 return <div style={{ width: '100%' }}>{children}</div>
             }
