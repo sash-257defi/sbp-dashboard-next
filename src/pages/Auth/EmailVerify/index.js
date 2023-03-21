@@ -20,7 +20,7 @@ const EmailVerify = () => {
     const onSubmit = async () => {
         try {
             setStatus('loading')
-            await fetcher('/api/user/email/verify', {
+            await fetcher('/api/user/email-verify', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json, text/plain, */*',
