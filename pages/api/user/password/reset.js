@@ -1,16 +1,17 @@
-import { ValidateProps } from '@/api-lib/constants'
+import { ValidateProps } from '../../../../src/api-lib/constants'
 import {
     createToken,
     findAndDeleteTokenByIdAndType,
     findUserByEmail,
     UNSAFE_updateUserPassword,
-} from '@/api-lib/db'
-import { CONFIG as MAIL_CONFIG, sendMail } from '@/api-lib/mail'
-import { validateBody } from '@/api-lib/middlewares'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { ncOpts } from '@/api-lib/nc'
+} from '../../../../src/api-lib/db'
+import { CONFIG as MAIL_CONFIG, sendMail } from '../../../../src/api-lib/mail'
+import { validateBody } from '../../../../src/api-lib/middlewares'
+import { getMongoDb } from '../../../../src/api-lib/mongodb'
+import { ncOpts } from '../../../../src/api-lib/nc'
 import nc from 'next-connect'
 import normalizeEmail from 'validator/lib/normalizeEmail'
+import { EmailTemplates } from '../../../../src/pages/Auth/emailTemplates'
 
 const handler = nc(ncOpts)
 
@@ -40,17 +41,13 @@ handler.post(
             type: 'passwordReset',
             expireAt: new Date(Date.now() + 1000 * 60 * 20),
         })
+        const data = EmailTemplates(token, null)
 
         await sendMail({
             to: email,
             from: MAIL_CONFIG.from,
             subject: '[nextjs-mongodb-app] Reset your password.',
-            html: `
-      <div>
-        <p>Hello, ${user.name}</p>
-        <p>Please follow <a href="${process.env.WEB_URI}/forget-password/${token._id}">this link</a> to reset your password.</p>
-      </div>
-      `,
+            html: data,
         })
 
         res.status(204).end()

@@ -1,5 +1,5 @@
-import '@/assets/base.css'
-import { Layout } from '@/components/Layout'
+import '../src/assets/base.css'
+import { Layout } from '../src/components/Layout'
 import { ThemeProvider } from 'next-themes'
 import { Toaster } from 'react-hot-toast'
 
@@ -7,8 +7,8 @@ export default function MyApp({ Component, pageProps }) {
     return (
         <ThemeProvider forcedTheme={'dark'}>
             <Layout>
-                <Component {...pageProps} />
                 <Toaster />
+                <Component {...pageProps} />
             </Layout>
         </ThemeProvider>
     )

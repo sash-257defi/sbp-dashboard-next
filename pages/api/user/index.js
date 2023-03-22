@@ -1,14 +1,14 @@
-import { ValidateProps } from '@/api-lib/constants'
-import { findUserByUsername, updateUserById } from '@/api-lib/db'
-import { auths, validateBody } from '@/api-lib/middlewares'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { ncOpts } from '@/api-lib/nc'
-import { slugUsername } from '@/lib/user'
+import { ValidateProps } from '../../../src/api-lib/constants'
+import { findUserByUsername, updateUserById } from '../../../src/api-lib/db'
+import { auths, validateBody } from '../../../src/api-lib/middlewares'
+import { getMongoDb } from '../../../src/api-lib/mongodb'
+import { ncOpts } from '../../../src/api-lib/nc'
+import { slugUsername } from '../../../src/lib/user'
 import { v2 as cloudinary } from 'cloudinary'
 import multer from 'multer'
 import nc from 'next-connect'
-
-const upload = multer({ dest: '/tmp' })
+const storage = multer.memoryStorage()
+const upload = multer(storage)
 const handler = nc(ncOpts)
 
 if (process.env.CLOUDINARY_URL) {
@@ -52,8 +52,8 @@ handler.patch(
         const db = await getMongoDb()
 
         let profilePicture
-        if (req.file) {
-            const image = await cloudinary.uploader.upload(req.file.path, {
+        if (req.body.profilePicture) {
+            const image = await cloudinary.uploader.upload(req.body.profilePicture, {
                 width: 512,
                 height: 512,
                 crop: 'fill',

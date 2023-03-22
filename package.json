@@ -8,7 +8,7 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "lint:fix": "eslint api-lib components lib page-components pages --fix",
+        "lint:fix": "eslint src/api-lib src/components src/lib src/pages pages --fix",
         "stylelint": "stylelint '**/*.js' --formatter verbose",
         "format": "prettier --write \"**/*.{js,jsx,json,md}\""
     },

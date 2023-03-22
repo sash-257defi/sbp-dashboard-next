@@ -1,8 +1,8 @@
-import { ValidateProps } from '@/api-lib/constants'
-import { findPosts, insertPost } from '@/api-lib/db'
-import { auths, validateBody } from '@/api-lib/middlewares'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { ncOpts } from '@/api-lib/nc'
+import { ValidateProps } from '../../../src/api-lib/constants'
+import { findPosts, insertPost } from '../../../src/api-lib/db'
+import { auths, validateBody } from '../../../src/api-lib/middlewares'
+import { getMongoDb } from '../../../src/api-lib/mongodb'
+import { ncOpts } from '../../../src/api-lib/nc'
 import nc from 'next-connect'
 
 const handler = nc(ncOpts)

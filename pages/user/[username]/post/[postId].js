@@ -1,6 +1,6 @@
-import { findPostById } from '@/api-lib/db'
-import { getMongoDb } from '@/api-lib/mongodb'
-import { UserPost } from '@/page-components/UserPost'
+import { findPostById } from '../../../../src/api-lib/db'
+import { getMongoDb } from '../../../../src/api-lib/mongodb'
+import { UserPost } from '../../../../src/pages/UserPost'
 import Head from 'next/head'
 
 export default function UserPostPage({ post }) {
